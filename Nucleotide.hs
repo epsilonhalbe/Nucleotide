@@ -5,7 +5,8 @@ import Data.List (sort)
 data Nucleotide = A|B|C|D|H|G|K|M|R deriving (Ord,Eq,Enum,Show)
 
 isSolution :: String -> Bool
-isSolution nucs = (checkRules chunk) -- && (isSolution rest)
+isSolution [] = True
+isSolution nucs = (checkRules chunk) && (isSolution rest)
     where chunk = stringToNucleotideSequence [n1,n2,n3]
           (n1:n2:n3:rest) = nucs
 
